@@ -1,0 +1,31 @@
+name: DB Migration Check
+
+on:
+  pull_request:
+    paths:
+      - "supabase/migrations/**"
+
+jobs:
+  check-migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Start local Supabase
+        run: supabase start
+
+      - name: Apply migrations against a clean local database
+        run: supabase db reset
+
+      - name: Diff for drift
+        run: |
+          supabase db diff --schema public > /tmp/diff.sql
+          if [ -s /tmp/diff.sql ]; then
+            echo "Uncommitted schema drift detected:"
+            cat /tmp/diff.sql
+            exit 1
+          fi

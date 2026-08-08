@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design tokens — Milestone 2.
+
+  Named for what they are, not their shade ("plum", not "purple-700"),
+  so the palette reads the same way in code as it does in conversation
+  about the brand. Values are pulled from the logo mark: a warm
+  near-black rather than blue-black, and the exact plum of the wordmark
+  as the one saturated brand color — everything else stays quiet so
+  that color means something when it shows up.
+*/
+:root {
+  --color-ink: 18 16 22; /* #121016 — page background */
+  --color-ink-raised: 26 23 31; /* #1A171F — cards, raised surfaces */
+  --color-plum: 91 75 99; /* #5B4B63 — brand / logo purple */
+  --color-plum-bright: 139 111 168; /* #8B6FA8 — links, focus, interactive */
+  --color-plum-deep: 58 47 64; /* #3A2F40 — pressed states, borders on dark */
+  --color-star: 245 230 168; /* #F5E6A8 — rare highlight: featured, signature moments */
+  --color-paper: 239 233 228; /* #EFE9E4 — primary text on dark */
+  --color-mute: 138 131 144; /* #8A8390 — secondary text */
+  --color-danger: 201 92 92; /* #C95C5C — errors, destructive actions */
+
+  --font-display: var(--font-fredoka);
+  --font-body: var(--font-source-serif);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --radius-bubble: 1.25rem; /* the rounded, logo-echoing corner radius */
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: rgb(var(--color-ink));
+  color: rgb(var(--color-paper));
+  font-family: var(--font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

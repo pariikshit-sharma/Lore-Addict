@@ -1,0 +1,15 @@
+{
+  "name": "@lore-addict/config",
+  "private": true,
+  "version": "0.1.0",
+  "main": "index.js",
+  "exports": {
+    "./eslint/next.mjs": "./eslint/next.mjs",
+    "./tsconfig/base.json": "./tsconfig/base.json"
+  },
+  "dependencies": {
+    "eslint-config-next": "16.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0"
+  }
+}
