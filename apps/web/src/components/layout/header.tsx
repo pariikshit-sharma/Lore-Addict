@@ -69,9 +69,9 @@ export async function Header() {
             <SearchIcon />
           </Link>
 
-          {profile ? (
+          {user ? (
             <div className="hidden items-center gap-3 md:flex">
-              {canAccess(profile.role, "ACCESS_STUDIO") && (
+              {profile && canAccess(profile.role, "ACCESS_STUDIO") && (
                 <Link href="/studio">
                   <Button variant="secondary" size="sm">
                     Studio
@@ -85,7 +85,11 @@ export async function Header() {
                 Bookmarks
               </Link>
               <Link href="/settings" aria-label="Account settings">
-                <Avatar src={profile.avatar_url} name={profile.display_name} size={32} />
+                <Avatar
+                  src={profile?.avatar_url ?? null}
+                  name={profile?.display_name ?? user.email ?? "Account"}
+                  size={32}
+                />
               </Link>
               <form action={signOutAction}>
                 <Button variant="ghost" size="sm" type="submit">
@@ -108,7 +112,7 @@ export async function Header() {
 
           <MobileNav
             navLinks={NAV_LINKS}
-            isAuthenticated={Boolean(profile)}
+            isAuthenticated={Boolean(user)}
             canAccessStudio={profile ? canAccess(profile.role, "ACCESS_STUDIO") : false}
           />
         </div>
